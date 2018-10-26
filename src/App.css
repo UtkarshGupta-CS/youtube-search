@@ -1,4 +1,7 @@
 .App {
-  background-color: rgba(0, 0, 0, 0.89);
   margin: auto;
+}
+
+html {
+  background-color: rgba(0, 0, 0, 0.89);
 }
