@@ -27,6 +27,13 @@ export const VideosList = observer(
                 <div>
                   <p>{video.snippet.title}</p>
                   <p>{video.snippet.channelTitle}</p>
+                  <p>
+                    {new Date(video.snippet.publishedAt).getDate() +
+                      "/" +
+                      new Date(video.snippet.publishedAt).getMonth() +
+                      "/" +
+                      new Date(video.snippet.publishedAt).getFullYear()}
+                  </p>
                 </div>
                 <br />
               </VideoRow>

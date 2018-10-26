@@ -11,9 +11,31 @@ export const SearchStore = decorate(
           `https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyC0ohFUZsmX5-uRuyKKNP7nHug97dvXIsg&maxResults=25&q=${keyword}&videoEmbeddable=true&type=video`
         );
         console.log(response);
-        this.searchResults = response.hasOwnProperty("data")
-          ? response.data.items
-          : [];
+        let res = response.hasOwnProperty("data") ? response.data.items : [];
+        res.sort(function(a, b) {
+          let title1 = a.snippet.title;
+          let title2 = b.snippet.title;
+
+          if (title1 > title2) {
+            return 1;
+          } else if (title1 === title2) {
+            return 0;
+          }
+          return -1;
+        });
+
+        res.sort(function(a, b) {
+          let date1 = new Date(a.snippet.publishedAt);
+          let date2 = new Date(b.snippet.publishedAt);
+
+          if (date1 > date2) {
+            return 1;
+          } else if (date1 === date2) {
+            return 0;
+          }
+          return -1;
+        });
+        this.searchResults = res;
       } catch (error) {
         console.error(error);
       }

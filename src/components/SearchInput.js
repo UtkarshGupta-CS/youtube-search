@@ -25,6 +25,7 @@ export const SearchInput = observer(
           />
           <Button
             type="button"
+            disabled={keyword.length <= 0}
             onClick={() => {
               searchKeyword(keyword);
             }}
