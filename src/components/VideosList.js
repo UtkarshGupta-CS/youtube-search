@@ -4,14 +4,22 @@ import { VideoRow, StyledVideosList } from "./styles";
 
 export const VideosList = observer(
   class VideosList extends React.Component {
+    onSortOptionSelect = event => {
+      this.props.sortSearchResults(event.target.value)
+    };
+    
     render() {
-      const { searchResults } = this.props;
+      const { searchResults, sortSearchResults, sortedResults } = this.props;
 
       return (
         <StyledVideosList>
-          {searchResults &&
-            searchResults.length > 0 &&
-            searchResults.map((video, index) => (
+          <select onChange={e => this.onSortOptionSelect(e)}>
+            <option value="name">Name</option>
+            <option value="date">Published Date</option>
+          </select>
+          {sortedResults &&
+            sortedResults.length > 0 &&
+            sortedResults.map((video, index) => (
               <VideoRow
                 key={video.id.videoId}
                 onClick={() => {

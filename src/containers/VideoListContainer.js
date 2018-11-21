@@ -11,6 +11,8 @@ export const VideoListContainer = inject("store")(
         return (
           <VideosList
             searchResults={store.searchResults}
+            sortSearchResults={store.sortSearchResults}
+            sortedResults={store.sortedResults}
           />
         );
       }
